@@ -1,0 +1,9 @@
+[
+    { "id": 1, "path": "../../assets/images/faces/face1.jpg", "fullName": "Herman Beck", "skillCapacity": "80", "lastUpdatedDate": "May 15, 2015", "status": "Inprogress" },
+    { "id": 2, "path": "../../assets/images/faces/face2.jpg", "fullName": "Noor Khan", "skillCapacity": "50", "lastUpdatedDate": "May 25, 2015", "status": "Completed" },
+    { "id": 3, "path": "../../assets/images/faces/face3.jpg", "fullName": "David Khan", "skillCapacity": "40", "lastUpdatedDate": "May 05, 2015", "status": "Rejected" },
+    { "id": 4, "path": "../../assets/images/faces/face4.jpg", "fullName": "Farouk Khan", "skillCapacity": "25", "lastUpdatedDate": "May 15, 2015", "status": "Inprogress" },
+    { "id": 5, "path": "../../assets/images/faces/face5.jpg", "fullName": "Junaid Khan", "skillCapacity": "60", "lastUpdatedDate": "May 25, 2015", "status": "Completed" },
+    { "id": 6, "path": "../../assets/images/faces/face6.jpg", "fullName": "Isaac Khan", "skillCapacity": "10", "lastUpdatedDate": "May 35, 2015", "status": "Inprogress" },
+    { "id": 7, "path": "../../assets/images/faces/face7.jpg", "fullName": "Afari Khan", "skillCapacity": "90", "lastUpdatedDate": "May 05, 2015", "status": "Completed" }
+]

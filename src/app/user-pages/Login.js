@@ -47,7 +47,7 @@ const Login = ({ setUserState }) => {
     //setUserState(userData);
   
     // Construct the profile route URL with the user data as a query parameter
-    const profileUrl = `/profile?user=${encodeURIComponent(JSON.stringify(user))}`;
+    const profileUrl = `/#/profile?user=${encodeURIComponent(JSON.stringify(user))}`;
   
     // Redirect to the profile page
     window.location.href = profileUrl;

@@ -70,7 +70,7 @@ function RecurProfileDetails() {
 
   useEffect(() => {
     // Fetch education data from the API when the component mounts
-    axios.get('http://localhost:5000/education')
+    axios.get('http://kitecareer.com/jobapp/education')
       .then(response => {
         setEducationData(response.data);
       })
@@ -135,7 +135,7 @@ function RecurProfileDetails() {
 
       if (editingId !== null) {
         // If editingId is set, update the existing record
-        axios.put(`http://localhost:5000/education/${editingId}`, formData)
+        axios.put(`http://kitecareer.com/jobapp/education/${editingId}`, formData)
           .then(response => {
             // Update the educationData array with the edited data
             setEducationData(prevData =>
@@ -152,7 +152,7 @@ function RecurProfileDetails() {
           });
       } else {
         // If editingId is not set, create a new record
-        axios.post('http://localhost:5000/education', formData)
+        axios.post('http://kitecareer.com/jobapp/education', formData)
           .then(response => {
             // Add the new data to the educationData array
             setEducationData(prevData => [...prevData, response.data]);
@@ -183,7 +183,7 @@ function RecurProfileDetails() {
   function handleDeleteClick(id) {
     // Confirm the deletion and then delete the record
     if (window.confirm('Are you sure you want to delete this record?')) {
-      axios.delete(`http://localhost:5000/education/${id}`)
+      axios.delete(`http://kitecareer.com/jobapp/education/${id}`)
         .then(() => {
           // Remove the deleted data from the educationData array
           setEducationData(prevData =>

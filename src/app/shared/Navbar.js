@@ -20,7 +20,7 @@ export default function Navbar()
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("firstName");
-    window.location.href = "/";
+    window.location.href = "/#/";
   };
   
   function toggleOffcanvas() {
@@ -182,7 +182,7 @@ export default function Navbar()
               </Dropdown>
             </li>
             <li className="nav-item nav-logout d-none d-lg-block">
-              <a className="nav-link" href="!#" onClick={handleLogout}>
+              <a className="nav-link" href="#" onClick={handleLogout}>
                 <i className="mdi mdi-power"></i>
               </a>
             </li>

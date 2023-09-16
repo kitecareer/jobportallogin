@@ -150,7 +150,7 @@ function Addjob() {
         <Form.Group controlId="formBasicEmail">
         <Form.Label>Experience From</Form.Label>
         <Form.Control
-          placeholder="dd/mm/yyyy"
+          placeholder="Ex:1yr"
           aria-label="Experiance From"
           aria-describedby="basic-addon1"
           value={ exp_from}
@@ -164,7 +164,7 @@ function Addjob() {
         <Form.Group controlId="formBasicEmail">
         <Form.Label>Experience End</Form.Label>
         <Form.Control
-          placeholder="dd/mm/yyyy"
+          placeholder="Ex-2yr"
           aria-label="Experience End"
           aria-describedby="basic-addon1"
           value={exp_to}

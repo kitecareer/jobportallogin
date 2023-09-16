@@ -164,7 +164,7 @@ function Step2() {
 
   return (
    <>
-      <div>Step1</div>
+      <div>Step2</div>
       <div>
       <div>
             {educationData.map(data => (

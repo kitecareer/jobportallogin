@@ -5,6 +5,7 @@ import {  Form , Button, Alert } from "react-bootstrap";
 import Axios from "axios";
 
 function Addjob() {
+ 
     const [ exp_from, setexp_from] = useState();
     const [createDate, setcreateDate] = useState();
     const [exp_to, setexp_to] = useState();
@@ -64,7 +65,7 @@ function Addjob() {
   
       if (form.checkValidity() === false) {
         e.stopPropagation();
-        alert("add job Failed");
+       
       }
       setValidated(true);
   
@@ -162,15 +163,10 @@ function Addjob() {
         </Form.Control.Feedback>
         </Form.Group>
     
-    
         <Form.Group controlId="formBasicEmail">
         <Form.Label>Experience From</Form.Label>
         <Form.Control
-<<<<<<< HEAD
           placeholder="Ex 1 Year"
-=======
-          placeholder="Ex:1yr"
->>>>>>> 7eec8f99fcb8a2a9555ba9a411ed96b06ce50e1d
           aria-label="Experiance From"
           aria-describedby="basic-addon1"
           value={ exp_from}
@@ -184,11 +180,7 @@ function Addjob() {
         <Form.Group controlId="formBasicEmail">
         <Form.Label>Experience End</Form.Label>
         <Form.Control
-<<<<<<< HEAD
           placeholder="Ex 3 Year"
-=======
-          placeholder="Ex-2yr"
->>>>>>> 7eec8f99fcb8a2a9555ba9a411ed96b06ce50e1d
           aria-label="Experience End"
           aria-describedby="basic-addon1"
           value={exp_to}

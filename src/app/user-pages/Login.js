@@ -4,11 +4,11 @@ import loginstyle from "./Login.module.css";
 import { Form, Button } from 'react-bootstrap';
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { makeAuthenticatedRequest } from './api.js'; // Import the authentication function
 
 const Login = ({ setUserState }) => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [jwtToken, setJwtToken] = useState(""); // State to store the JWT token
   const [user, setUserDetails] = useState({
     email: "",
     password: "",
@@ -43,31 +43,34 @@ const Login = ({ setUserState }) => {
   };
 
   const handleSuccessfulLogin = (user) => {
-    // Save user data to state or any other way you want to manage the logged-in user
-    //setUserState(userData);
-  
-    // Construct the profile route URL with the user data as a query parameter
+    // Store the JWT token in local storage
+   
+
+    // Redirect to the profile page or perform other actions
+    // ...
     const profileUrl = `/#/profile?user=${encodeURIComponent(JSON.stringify(user))}`;
-  
-    // Redirect to the profile page
+    // Example: Redirect to the profile page
+ 
     window.location.href = profileUrl;
   };
-  
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      axios
-        .post("https://kitecareer.com/jobapp/login", user)
+      console.log ("Submitting form and making API request");
+      localStorage.setItem('jwtToken', user.token);
+      // Make an authenticated API request using the JWT token
+      makeAuthenticatedRequest('https://kitecareer.com/jobapp/login', user)
         .then((res) => {
+          console.log("Api Response :", res.data)
           alert(res.data.message);
           handleSuccessfulLogin(res.data);
         })
         .catch((error) => {
+          console.log("Api Error :",error);
           alert("Invalid credentials");
         });
     }
   }, [formErrors, isSubmit]);
-
   return (
     <div className="d-flex align-items-center auth px-0">
       <div className="row w-100 mx-0">

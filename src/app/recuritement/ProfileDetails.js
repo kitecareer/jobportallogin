@@ -295,12 +295,12 @@ function RecurProfileDetails() {
                 <td>{data.status}</td>
                 <td>
                   
-             {/*    <Button onClick={handleSubmit}variant="primary" type="submit"> 
+                <Button onClick={handleSubmit}variant="primary" type="submit"> 
             update
           </Button>
           
                 <Button variant="warning" onClick={() => handleEditClick(data.id)}>Edit</Button>
-                  <Button variant="danger" onClick={() => handleDeleteClick(data.id)}>Delete</Button>*/}
+                  <Button variant="danger" onClick={() => handleDeleteClick(data.id)}>Delete</Button>
                 </td> 
               </tr>
             ))}

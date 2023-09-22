@@ -8,9 +8,9 @@ function Addjob() {
     const [ exp_from, setexp_from] = useState();
     const [createDate, setcreateDate] = useState();
     const [exp_to, setexp_to] = useState();
-    const [file, setFile] = useState();
+    const [company_name, setCompany] = useState();
     const [validated, setValidated] = useState(false);
-    const [jobid, setjobid] = useState("");
+    const [job_id, setjobid] = useState("");
     const [skills, setskills] = useState("");
     const [description, setdescription] = useState("");
     const [title, setTitle] = useState("");
@@ -22,19 +22,19 @@ function Addjob() {
     async function submitJob() {
       try {
         const response = await Axios.post("https://kitecareer.com/jobapp/jobs", {
-          jobid,
+          job_id,
           title,
           description,
           salary,
           exp_from,
-          
+          company_name,
           skills,
           contact,
           locations,
           status,
           exp_to,
         });
-  
+        alert("add job successfully",response.data)
         console.log("Job added successfully", response.data);
   
         setjobid("");
@@ -42,7 +42,7 @@ function Addjob() {
         setdescription("");
         setSalary("");
         setexp_from(null);
-        
+        setCompany("");
         setskills("");
         setcontact("");
         setLocations("");
@@ -64,12 +64,13 @@ function Addjob() {
   
       if (form.checkValidity() === false) {
         e.stopPropagation();
+        alert("add job Failed");
       }
       setValidated(true);
   
       if (form.checkValidity()) {
         submitJob();
-        alert("add job successfully")
+       
       }
     };
 
@@ -92,9 +93,10 @@ function Addjob() {
         <Form.Control
           placeholder="job id"
           aria-label="job id"
-          value={jobid}
-          onChange={(e) => setjobid(e.target.value)}
+          value={job_id}
           disabled
+          onChange={(e) => setjobid(e.target.value)}
+          
           required
           aria-describedby="basic-addon1"
         />
@@ -117,6 +119,20 @@ function Addjob() {
             </Form.Control.Feedback>
       </Form.Group>
 
+      <Form.Group controlId="formBasicEmail">
+        <Form.Label> Company Name</Form.Label>
+        <Form.Control
+          placeholder="Company Name"
+          aria-label="Company Name"
+          value={company_name}
+          onChange={(e) => setCompany(e.target.value)}
+          required
+          aria-describedby="basic-addon1"
+        />
+        <Form.Control.Feedback type="invalid">
+              Company Name is required.
+            </Form.Control.Feedback>
+      </Form.Group>
       <Form.Group controlId="formBasicEmail">
         <Form.Label> Job Description</Form.Label>
         <Form.Control
@@ -150,7 +166,11 @@ function Addjob() {
         <Form.Group controlId="formBasicEmail">
         <Form.Label>Experience From</Form.Label>
         <Form.Control
+<<<<<<< HEAD
+          placeholder="Ex 1 Year"
+=======
           placeholder="Ex:1yr"
+>>>>>>> 7eec8f99fcb8a2a9555ba9a411ed96b06ce50e1d
           aria-label="Experiance From"
           aria-describedby="basic-addon1"
           value={ exp_from}
@@ -164,7 +184,11 @@ function Addjob() {
         <Form.Group controlId="formBasicEmail">
         <Form.Label>Experience End</Form.Label>
         <Form.Control
+<<<<<<< HEAD
+          placeholder="Ex 3 Year"
+=======
           placeholder="Ex-2yr"
+>>>>>>> 7eec8f99fcb8a2a9555ba9a411ed96b06ce50e1d
           aria-label="Experience End"
           aria-describedby="basic-addon1"
           value={exp_to}

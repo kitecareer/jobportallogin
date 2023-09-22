@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Table } from "react-bootstrap";
 import axios from 'axios';
+import { makeAuthenticatedRequest } from '../user-pages/api'; // Import the authentication function
 
 function Step2() {
   const [user_id, setUserid] = useState('');
@@ -19,13 +20,22 @@ function Step2() {
 
   useEffect(() => {
     // Fetch education data from the API when the component mounts
-    axios.post('http://kitecareer.com/jobapp/education')
-      .then(response => {
-        setEducationData(response.data);
-      })
-      .catch(error => {
+    const fetchData = async () => {
+      try {
+        // Make an authenticated API request using the JWT token
+        const apiResponse = await makeAuthenticatedRequest('http://kitecareer.com/jobapp/education', {
+          // Add any request data if needed
+        });
+
+        // Set the education data in the component state
+        setEducationData(apiResponse.data);
+      } catch (error) {
         console.error('Error fetching data from the API: ', error);
-      });
+      }
+    };
+
+    // Call the fetchData function when the component mounts
+    fetchData();
   }, []);
 
   function validateForm() {
@@ -87,7 +97,7 @@ function Step2() {
         axios.put(`http://kitecareer.com/jobapp/education`, formData)
           .then(response => {
             // Update the educationData array with the edited data
-            setedu_id(prevData =>
+            setEducationData(prevData =>
               prevData.map(item =>
                 item.id === edu_id ? { ...item, ...formData } : item
               )
@@ -102,16 +112,17 @@ function Step2() {
       } else {
         // If editingId is not set, create a new record
         axios.post(`http://kitecareer.com/jobapp/education`, formData)
-        .then(response => {
-          console.log(response.data);
-       
-          alert('Data saved successfully!');
-        })
-        .catch(error => {
-          console.error('Error:', error);
-           
-          alert('An error occurred while saving data.');
-        });
+          .then(response => {
+            console.log(response.data);
+            // Update the educationData array with the new data
+            setEducationData(prevData => [...prevData, response.data]);
+            resetForm();
+            alert('Data saved successfully!');
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while saving data.');
+          });
       }
     }
   }
@@ -132,7 +143,7 @@ function Step2() {
   function handleDeleteClick(id) {
     // Confirm the deletion and then delete the record
     if (window.confirm('Are you sure you want to delete this record?')) {
-      axios.delete(`http://kitecareer.com/jobapp/education${id}`)
+      axios.delete(`http://kitecareer.com/jobapp/education/${id}`)
         .then(() => {
           // Remove the deleted data from the educationData array
           setEducationData(prevData =>

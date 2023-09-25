@@ -15,7 +15,7 @@ function JobView() {
           const sortedJobs = response.data.data["Job List"].sort((a, b) =>
             new Date(b.last_updated) - new Date(a.last_updated)
           );
-          setJobs(sortedJobs);
+          setJobs(sortedJobs.reverse()); // Reverse the order of jobs to show the most recent first
         } else {
           setError('Invalid response data');
         }
@@ -30,7 +30,22 @@ function JobView() {
   const indexOfFirstJob = indexOfLastJob - jobsPerPage;
   const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handlePrevClick = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    const maxPage = Math.ceil(jobs.length / jobsPerPage);
+    if (currentPage < maxPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div>
@@ -39,7 +54,7 @@ function JobView() {
         <p>Error: {error}</p>
       ) : (
         <div>
-          <TableContainer component={Paper}>
+                   <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
@@ -73,12 +88,14 @@ function JobView() {
               </TableBody>
             </Table>
           </TableContainer>
+       
           <div className="pagination">
-            {Array.from({ length: Math.ceil(jobs.length / jobsPerPage) }, (_, i) => (
-              <Button key={i} variant="contained" onClick={() => paginate(i + 1)}>
-                {i + 1}
-              </Button>
-            ))}
+            <Button variant="contained" onClick={handlePrevClick} disabled={currentPage === 1}>
+              Prev
+            </Button>
+            <Button variant="contained" onClick={handleNextClick} disabled={currentPage === Math.ceil(jobs.length / jobsPerPage)}>
+              Next
+            </Button>
           </div>
         </div>
       )}
